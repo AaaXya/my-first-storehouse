@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="./bubbleSort.js"></script>
+</head>
+
+<body>
+    <div class="lanmu">
+        <h1>Persona</h1>
+        <div id="increase">
+            <a href="/add">
+                添加角色
+            </a>
+        </div>
+        <table class="table">
+            <thead class="thead">
+                <tr>
+                    <td>编号</td>
+                    <td>头像</td>
+                    <td>代号</td>
+                    <td>性别</td>
+                    <td>arcana</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody id="tbody" class="tbody">
+            </tbody>
+        </table>
+    </div>
+    <p></p>
+    <script>
+        console.log('----------------------');
+        function getDataAll() {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    let backdata = JSON.parse(xhr.responseText)
+                    backdata.forEach(element => {
+                        element.id = Number(element.id)
+                    });
+                    bubbleSort(backdata)
+                    console.log(backdata);
+                    let wrap = document.querySelector('#tbody')
+                    wrap.innerHTML = ''
+                    let htmls = ''
+                    for (let i = 0; i < backdata.length; i++) {
+                        htmls += `
+                   <tr>
+                    <td>${backdata[i].id}</td>
+                    <td><img src="${backdata[i].img}" alt="" srcset="" width="70px" height="70px"></td>
+                    <td>${backdata[i].names}</td>
+                    <td>${backdata[i].sex}</td>
+                    <td>${backdata[i].arcana}</td>
+                    <td>
+                        <a class="check" href="/getone?id=${backdata[i].id}">查看</a>&nbsp;
+                        <a class="check" href="/edituser?id=${backdata[i].id}">修改</a>&nbsp;
+                        <a href="" user_id=${backdata[i].id}>删除</a>&nbsp;
+                    </td>
+                </tr>
+                 `
+                        wrap.innerHTML = htmls;
+                    }
+                }
+            }
+            xhr.open('get', 'getall')
+            xhr.send()
+        }
+        getDataAll();
+
+        document.querySelector('#tbody').addEventListener('click', function (ev) {
+
+            console.log(ev);
+            console.log(ev.target.innerText);
+            if (ev.target.innerHTML === '删除') {
+                //阻止浏览器默认行为
+                ev.preventDefault();
+                let xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.responseText == 'success') {
+                            getDataAll()
+                        }
+                    }
+                }
+                xhr.open('delete', 'http://127.0.0.1:7070/deluser?id=' + ev.target.getAttribute('user_id'))
+                xhr.send()
+            }
+
+        })
+    </script>
+</body>
+
+</html>

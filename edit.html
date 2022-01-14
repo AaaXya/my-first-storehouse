@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./base.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <form action="/editpost?id={{data.id}}" method="post" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td>编号</td>
+                    <td><input name="bianhao" type="text" value="{{data.id}}"></td>
+                </tr>
+                <tr>
+                    <td>代号</td>
+                    <td><input name="names" type="text" value="{{data.names}}"></td>
+                </tr>
+                <tr>
+                    <td>性别</td>
+                    <td><input name="sex" type="text" value="{{data.sex}}"></td>
+                </tr>
+                <tr>
+                    <td>arcana</td>
+                    <td><input name="arcana" type="text" value="{{data.arcana}}"></td><!-- 阿卡纳牌 -->
+                </tr>
+                <tr>
+                    <td>上传图片</td>
+                    <td><input name="img" type="file"></td>
+                </tr>
+                <tr>
+                    <td>提交</td>
+                    <td><input type="submit" value="提交信息"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

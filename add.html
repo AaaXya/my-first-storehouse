@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./base.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <form id="fm" action="" method="post" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td>编号</td>
+                    <td><input name="id" type="text" value=""></td>
+                </tr>
+                <tr>
+                    <td>代号</td>
+                    <td><input name="names" type="text" value=""></td>
+                </tr>
+                <tr>
+                    <td>性别</td>
+                    <td><input name="sex" type="text" value=""></td>
+                </tr>
+                <tr>
+                    <td>arcana</td>
+                    <td><input name="arcana" type="text" value=""></td>
+                </tr>
+                <tr>
+                    <td>上传图片</td>
+                    <td><input name="img" type="file"></td>
+                </tr>
+                <tr>
+                    <td>提交</td>
+                    <td><input id="btn" type="button" value="提交信息"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+<script>
+    document.querySelector('#btn').onclick = function () {
+        //
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.responseText == 1) {
+                    location.href = '/'
+                }
+            }
+        }
+        //打包数据
+        let form = document.querySelector('#fm');
+        let fd = new FormData(form);
+        xhr.open('post', 'http://127.0.0.1:7070/submit');
+        //这里不用设置请求头 打包from表单表单处设置请求头
+        xhr.send(fd);
+    }
+</script>
+
+</html>

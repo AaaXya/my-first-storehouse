@@ -1,0 +1,70 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    --bgc-color-blue:DodgerBlue;
+    --bgc-color-red:red;
+    --bgc-color-black:#111;
+    --bgc-color-white:white;
+    background-image: url(./img/wallpaper.jpg);
+    background-size: cover;
+    color: var(--bgc-color-white);
+}
+h1{
+    font-size: 2.5em;
+    text-shadow:4px 3px var(--bgc-color-black);
+}
+.wrap{
+    width: 400px;
+    height:450px;
+    margin: 100px auto;
+    background-color: rgba(17, 17, 17, 0.418);
+}
+tbody{
+    margin: auto 10px;
+}
+table {
+margin: 10px auto;
+}
+tr {
+    font-size: 1.1em;
+    height: 65px;
+}
+input[type=text]{
+    height: 30px;
+    margin: 5px 10px;
+    color: var(--bgc-color-white);
+    font-size: 1em;
+    border: 2px inset rgb(60, 60, 60);
+    background-color: transparent;
+    transition: all .2s ease-out;
+}
+input:focus{
+    outline: 0;
+    border: 2px outset rgb(60, 60, 60);
+    border-color: rgb(60, 60, 60);
+}
+
+input[type=file],
+input[type=submit],
+input[type=button]{
+    background-color: #555; 
+    border: none;
+    color: white;
+    height: 40px;
+    width: 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 0 0 40px;
+}
+input[type=button]:hover,
+input[type=submit]:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}
